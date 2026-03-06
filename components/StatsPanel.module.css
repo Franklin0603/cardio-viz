@@ -1,0 +1,129 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: var(--panel);
+  height: 100%;
+}
+
+.section {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  color: rgba(0, 255, 136, 0.5);
+  letter-spacing: 0.3em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.patientName {
+  font-size: 20px;
+  font-weight: 600;
+  color: #eef;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.patientMeta {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  color: rgba(0, 255, 136, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: rgba(170, 200, 187, 0.6);
+  font-weight: 300;
+}
+
+.statValue {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 14px;
+  color: #eef;
+}
+
+.normal { color: var(--green) !important; }
+.warning { color: #ffaa00 !important; }
+.alert { color: var(--red) !important; }
+
+.intervalRow {
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.intervalRow:last-child {
+  border-bottom: none;
+}
+
+.intervalTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.barTrack {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.findingsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.findingsList li {
+  font-size: 12px;
+  color: rgba(170, 200, 187, 0.7);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.findingsList li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  opacity: 0.6;
+}
+
+.summary {
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(170, 200, 187, 0.72);
+  font-weight: 300;
+}
+
+.resetBtn {
+  margin: 20px 24px 24px;
+  background: transparent;
+  border: 1px solid rgba(255, 34, 68, 0.3);
+  color: rgba(255, 34, 68, 0.6);
+  padding: 10px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.resetBtn:hover {
+  background: rgba(255, 34, 68, 0.08);
+  border-color: var(--red);
+  color: var(--red);
+}

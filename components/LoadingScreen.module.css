@@ -1,0 +1,55 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 57px);
+  gap: 20px;
+}
+
+.heart {
+  font-size: 72px;
+  animation: beat 0.85s ease-in-out infinite;
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  14%  { transform: scale(1.2); }
+  28%  { transform: scale(1.06); }
+  42%  { transform: scale(1.14); }
+}
+
+.msg {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 0.25em;
+  animation: blink 1.6s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.25; }
+}
+
+.barWrap {
+  width: 320px;
+  height: 2px;
+  background: rgba(0, 255, 136, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-dim), var(--green));
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px var(--green);
+  border-radius: 2px;
+}
+
+.pct {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  color: rgba(0, 255, 136, 0.35);
+  letter-spacing: 0.2em;
+}

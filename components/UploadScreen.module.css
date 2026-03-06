@@ -1,0 +1,109 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 57px);
+  padding: 40px;
+  gap: 20px;
+}
+
+.zone {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 80px 60px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  background: var(--panel);
+}
+
+/* Corner brackets */
+.zone::before,
+.zone::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--green);
+  border-style: solid;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.zone::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.zone::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+.zone:hover {
+  border-color: rgba(0, 255, 136, 0.35);
+  background: rgba(0, 255, 136, 0.03);
+}
+.zone:hover::before,
+.zone:hover::after {
+  opacity: 1;
+}
+
+.drag {
+  border-color: var(--green) !important;
+  background: rgba(0, 255, 136, 0.06) !important;
+}
+
+.icon {
+  font-size: 52px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #eef;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.sub {
+  font-size: 12px;
+  color: rgba(170, 200, 187, 0.45);
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 10px 28px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: rgba(0, 255, 136, 0.1);
+  box-shadow: 0 0 16px rgba(0, 255, 136, 0.15);
+}
+
+.note {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  color: rgba(170, 200, 187, 0.25);
+  letter-spacing: 0.12em;
+}
