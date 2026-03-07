@@ -4,6 +4,20 @@ import { useState, useEffect } from "react";
 
 export default function HowItWorksPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
+  const [isMobile, setIsMobile]   = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", fn);
@@ -13,7 +27,7 @@ export default function HowItWorksPage() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(145deg, #eef3fb 0%, #f5f8ff 50%, #e8f0fe 100%)" }}>
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 60px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: scrolled ? "rgba(255,255,255,0.88)" : "transparent", backdropFilter: scrolled ? "blur(20px)" : "none", borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none", transition: "all 0.35s" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: isMobile ? "0 20px" : "0 60px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: scrolled ? "rgba(255,255,255,0.88)" : "transparent", backdropFilter: scrolled ? "blur(20px)" : "none", borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none", transition: "all 0.35s" }}>
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 38, height: 38, borderRadius: 11, background: "linear-gradient(135deg, #2563eb, #1d4ed8)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🫀</div>
           <span style={{ fontFamily: "Bebas Neue,sans-serif", fontWeight: 400, fontSize: 19, color: "#0a1628" }}>Cardio<span style={{ color: "#2563eb" }}>Viz</span></span>
@@ -28,6 +42,17 @@ export default function HowItWorksPage() {
         </Link>
       </nav>
 
+
+      {/* MOBILE MENU */}
+      <div style={{ position:"fixed", top:0, left:0, right:0, bottom:0, zIndex:999, background:"rgba(10,22,40,0.97)", backdropFilter:"blur(20px)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:32, transform: menuOpen ? "translateX(0)" : "translateX(100%)", transition:"transform 0.35s cubic-bezier(0.4,0,0.2,1)" }}>
+        <button onClick={() => setMenuOpen(false)} style={{ position:"absolute", top:20, right:20, background:"none", border:"none", color:"white", fontSize:32, cursor:"pointer" }}>✕</button>
+        {([["About Us", "/about-us"], ["How It Works", "/how-it-works"], ["Dashboard", "/dashboard"]] as const).map(([label, href]) => (
+          <Link key={href} href={href} onClick={() => setMenuOpen(false)} style={{ fontFamily:"Bebas Neue,sans-serif", fontSize:42, color:"white", textDecoration:"none", letterSpacing:"0.02em" }}>{label}</Link>
+        ))}
+        <Link href="/dashboard" onClick={() => setMenuOpen(false)} style={{ textDecoration:"none", marginTop:16 }}>
+          <button style={{ background:"#2563eb", color:"white", border:"none", borderRadius:50, padding:"14px 36px", fontSize:16, fontWeight:600 }}>Try Free →</button>
+        </Link>
+      </div>
       {/* HERO */}
       <section style={{ padding: "160px 80px 80px", textAlign: "center", maxWidth: 800, margin: "0 auto" }}>
         <div style={{ display: "inline-block", background: "rgba(37,99,235,0.09)", borderRadius: 50, padding: "6px 18px", marginBottom: 24, border: "1px solid rgba(37,99,235,0.16)" }}>
